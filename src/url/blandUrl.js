@@ -1,1 +1,2 @@
-export const GET_SHOWS = "/shows";
+export const GET_SHOWS = '/schedule';
+export const GET_SHOWS_INFO = (id) => `/shows/${id}`;

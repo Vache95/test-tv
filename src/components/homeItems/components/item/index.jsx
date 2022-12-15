@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import Rating from "@mui/material/Rating";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import Rating from '@mui/material/Rating';
+import { useNavigate } from 'react-router-dom';
 
-const Item = ({ image, name, rating }) => {
+const Item = ({ image, name, id,starringName }) => {
   const navigate = useNavigate();
   const TvInfo = () => {
-    navigate("/info");
+    navigate('/info', { state:{ id ,starringName} });
   };
   return (
     <div className="home__item">
       <div className="home__item-img" onClick={TvInfo}>
-        <img src={image.medium} alt="" />
+        <img src={image.image?.medium} alt="" />
       </div>
       <div className="home__item-reting">
-        <Rating name="read-only" precision={rating} readOnly />
-        {/* <span>********</span> */}
+        <Rating name="size-small" defaultValue={null} size="small" />
       </div>
       <div className="home__item-text">
-        {/* <p>this is the life of the TV show which is very long</p> */}
         <p>{name}</p>
       </div>
     </div>

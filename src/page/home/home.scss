@@ -3,6 +3,7 @@
   height: 100%;
   // border: 1px solid red;
   margin-top: -100px;
+  padding-bottom: 30px;
 }
 .home__container {
   width: 100%;
@@ -18,6 +19,11 @@
   .home__content {
   }
 }
+.home__pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .home__items {
   // border: 1px solid black;
   display: flex;
@@ -25,16 +31,22 @@
   justify-content: space-between;
 }
 .home__item {
-  max-width: 150px;
+  max-width: 200px;
   width: 100%;
   // border: 1px solid black;
   margin-bottom: 20px;
 }
 .home__item-img {
-  max-width: 150px;
+  max-width: 200px;
   width: 100%;
-  height: 150px;
+  height: 250px;
   margin-bottom: 5px;
+  transition: all 0.5s ease-out;
+  position: relative;
+  z-index: 99;
+  &:hover {
+    transform: scale(1.1, 1.1);
+  }
   cursor: pointer;
   img {
     width: 100%;

@@ -1,14 +1,17 @@
-import HomeItems from "components/homeItems";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { tvBlandThunk } from "store/slice/tvSlice";
-import "./home.scss";
+import HomeItems from 'components/homeItems';
+import Pagination from '@mui/material/Pagination';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilms } from 'store/selector';
+import { tvBlandThunk } from 'store/slice/tvSlice';
+import './home.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.tvBland);
+  const { items } = useSelector(selectFilms);
+  const filmItem = items?.slice(0, 18);
 
-  const testItem = items?.slice(0, 18);
+  const nextFilms = () => {};
   useEffect(() => {
     dispatch(tvBlandThunk());
   }, []);
@@ -20,11 +23,11 @@ const Home = () => {
           <h3>Last Added Shows</h3>
         </div>
         <div className="home__content">
-          {[1, 2, 3].map((elem) => (
-            <HomeItems key={elem} testItem={testItem} />
-          ))}
+          <HomeItems filmItem={filmItem} />
         </div>
-        <div className="home__pagination">pagination</div>
+        <div className="home__pagination">
+          <Pagination count={4} shape="rounded" onClick={nextFilms} />
+        </div>
       </div>
     </div>
   );
