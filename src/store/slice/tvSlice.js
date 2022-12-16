@@ -1,37 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getShows, getShowsFilm } from 'service/test';
-
-export const tvBlandThunk = createAsyncThunk('tvBlandThunk', async () => {
-  return getShows()
-    .then((data) => {
-      // console.log(data.data);
-      return data.data;
-    })
-    .catch((err) => {
-      return err;
-    });
-});
-
-export const tvBlandInfoThunk = createAsyncThunk('tvBlandInfoThunk', async (data) => {
-  return getShowsFilm(data)
-    .then((data) => {
-      return data.data;
-    })
-    .catch((err) => {
-      return err;
-    });
-});
-
-const initialState = {
-  items: [],
-  filmItems: [],
-  loading: true,
-  filmLoading: true,
-};
+import { createSlice } from "@reduxjs/toolkit";
+import { tvBlandInfoThunk, tvBlandThunk } from "./thunk";
+import { initialState } from "./initialState";
 
 export const tvSlice = createSlice({
-  name: 'pizza',
+  name: "pizza",
   initialState,
   reducers: {
     setItems: (state, action) => {

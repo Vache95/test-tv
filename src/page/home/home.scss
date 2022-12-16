@@ -1,22 +1,18 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
 .home {
-  width: 100%;
-  height: 100%;
-  // border: 1px solid red;
+  @include WidthHigth;
   margin-top: -100px;
   padding-bottom: 30px;
 }
 .home__container {
-  width: 100%;
-  height: 100%;
-  // border: 1px solid black;
+  @include WidthHigth;
   .home__h3 {
     margin-bottom: 20px;
     h3 {
-      color: #000;
+      color: $black;
       font-size: 22px;
     }
-  }
-  .home__content {
   }
 }
 .home__pagination {
@@ -25,7 +21,6 @@
   justify-content: center;
 }
 .home__items {
-  // border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -33,7 +28,6 @@
 .home__item {
   max-width: 200px;
   width: 100%;
-  // border: 1px solid black;
   margin-bottom: 20px;
 }
 .home__item-img {
@@ -46,11 +40,12 @@
   z-index: 99;
   &:hover {
     transform: scale(1.1, 1.1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
   cursor: pointer;
   img {
-    width: 100%;
-    height: 100%;
+    @include WidthHigth;
   }
 }
 .home__item-reting {
@@ -59,12 +54,23 @@
 .home__item-text {
   max-width: 140px;
 }
+@media (max-width: 1280px) {
+  .home__item {
+    max-width: 230px;
+  }
+}
 @media (max-width: 992px) {
   .home__item {
     max-width: 240px;
   }
 }
-@media (max-width: 670px) {
+@media (max-width: 778px) {
+  .home {
+    margin-top: 0px;
+    padding-top: 30px;
+  }
+}
+@media (max-width: 671px) {
   .home {
     margin-top: 0px;
     padding-top: 30px;

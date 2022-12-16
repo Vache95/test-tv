@@ -1,20 +1,33 @@
-import HomeItems from 'components/homeItems';
-import Pagination from '@mui/material/Pagination';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFilms } from 'store/selector';
-import { tvBlandThunk } from 'store/slice/tvSlice';
-import './home.scss';
+import HomeItems from "components/homeItems";
+import Pagination from "@mui/material/Pagination";
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilms } from "store/selector";
+import { tvBlandThunk } from "store/slice/thunk";
+
+import "./home.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(selectFilms);
-  const filmItem = items?.slice(0, 18);
+  const [prev, setPrev] = useState(0);
+  const [next, setNext] = useState(18);
 
-  const nextFilms = () => {};
+  const filmItem = () => items?.slice(prev, next);
+
+  const nextFilms = (page) => {
+    setPrev(page === 1 ? 0 : (page - 1) * 18);
+    setNext(page * 18);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [prev, next]);
+
   useEffect(() => {
     dispatch(tvBlandThunk());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">
@@ -26,7 +39,7 @@ const Home = () => {
           <HomeItems filmItem={filmItem} />
         </div>
         <div className="home__pagination">
-          <Pagination count={4} shape="rounded" onClick={nextFilms} />
+          <Pagination count={Math.ceil(items?.length / 18)} shape="rounded" onChange={(_, page) => nextFilms(page)} />
         </div>
       </div>
     </div>

@@ -93,7 +93,7 @@ h6 {
 /*--------------------*/
 
 body {
-  color: black;
+  color: $black;
   font-family: Arial, serif;
 }
 
@@ -105,7 +105,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  // border: 1px solid red;
+
 }
 
 [class*="__container"] {
@@ -113,10 +113,9 @@ body {
   max-width: 1319px;
   padding: 0px 15px;
   margin: 0px auto;
-  // border: 1px solid black;
+
 }
 
 .main {
   flex: 1 1 100%;
-  // border: 1px solid black;
 }

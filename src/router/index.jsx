@@ -1,18 +1,24 @@
-import { Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from "react";
 
-import MainLayout from 'layout/MainLayout';
-import Home from 'page/home/Home';
-import Info from 'page/info/Info';
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import MainLayout from "layout/MainLayout";
+import Home from "page/home/Home";
+
+const Info = lazy(() => import(/* webpackChunkName: "Info" */ "../page/info/Info"));
 
 const Router = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route path="" element={<Home />} />
-          <Route path="/info" element={<Info />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="" element={<Home />} />
+            <Route path="/info/:id" element={<Info />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
